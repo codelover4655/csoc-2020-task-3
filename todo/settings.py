@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import django_heroku
+#import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,15 +21,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
+
+
 SECRET_KEY = 'fj1s9uin3@7mdn3*jh3+avzm)u8w0rc!k*i8+q+*g59#)xz*_*'
 
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get('DEBUG','1'))
 
-if not DEBUG:
-    SECRET_KEY = config('SECRET_KEY')
 
-ALLOWED_HOSTS = ['*']
+
+DEBUG = True
+'''int(os.environ.get('DEBUG','1'))
+'''
+'''if not DEBUG:
+    SECRET_KEY = config('SECRET_KEY')'''
+
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -43,13 +51,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'drf_yasg',
-    'corsheaders',
-    'api'
+    'api',
+    'authentication'
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',
+   # 'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -149,4 +156,4 @@ SWAGGER_SETTINGS = {
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles/'
 
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
